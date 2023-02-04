@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/04 17:11:56 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:33:43 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ char	*new_line(char *af)
 	char	*line;
 	size_t	lenght;
 
+	lenght = 0;
 	while (af[lenght] != '\n')
 		lenght++;
 	line = malloc((lenght + 1) * sizeof(char *));
-	lenght = 0;
-	line[lenght]
+	lenght = -1;
+	while (af[++lenght - 1] != '\n')
+		line[lenght] = af[lenght];
+	line[lenght] = 0;
+	af += lenght;
+	return (line);
 }
 
 char	*get_next_line(int fd)
@@ -30,7 +35,7 @@ char	*get_next_line(int fd)
 	int	size;
 
 	size = read(fd, buff, 1023);
-	
+	return (new_line(buff));
 }
 
 int	main(void)
@@ -39,6 +44,6 @@ int	main(void)
 
 	if (!fd)
 		return (0);
-	get_next_line(fd);
+	printf("%s", get_next_line(fd));
 	return (0);
 }
