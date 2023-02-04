@@ -6,7 +6,7 @@
 /*   By: romaurel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:24:18 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/04 14:09:44 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:30:26 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <string.h>
 
 char	*get_next_line(int fd);
 
