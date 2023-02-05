@@ -6,7 +6,7 @@
 /*   By: romaurel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:24:18 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/04 16:30:26 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:19:41 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@
 # include <sys/stat.h>
 # include <string.h>
 
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1024
+#endif
+
 char	*get_next_line(int fd);
+
+char	*reader(char *buffer, int fd);
+
+int		strlenn(char *s, int option);
+
+int		ft_strchr(char *s, char n);
+
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif
