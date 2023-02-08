@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/08 19:53:01 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:20:29 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*reader(char *buffer, int fd)
 	while (rfl)
 	{
 		rfl = read(fd, str, BUFFER_SIZE);
-		if (rfl < 0)
+		if (rfl == -1)
 		{
 			free(str);
 			return (0);
@@ -139,14 +139,16 @@ char	*get_next_line(int fd)
 	buffer = reader(buffer, fd);
 	if (!buffer)
 		return (0);
+	printf("test\n");
 	line = ft_cl(buffer);
 	buffer = ft_nl(buffer);
 	return (line);
 }
-/*
+
 int	main(void)
 {
 	int fd = open("text.txt", O_RDONLY);
 
+	printf("%s\n", get_next_line(fd));
 	return (0);
-}*/
+}
