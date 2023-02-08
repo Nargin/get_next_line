@@ -110,7 +110,7 @@ char	*ft_nl(char *str)
 	return (nx);
 }
 
-void	ft_calloc(int n, int s)
+void	 *ft_calloc(int n, int s)
 {
 	int	i;
 	void	*p;
