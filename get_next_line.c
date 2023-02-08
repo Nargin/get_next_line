@@ -35,6 +35,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (0);
 	len = 0;
 	i = len;
+	k = 0;
 	while (s1[i])
 		nx[len++] = s1[i++];
 	while (s2[k])
@@ -136,9 +137,11 @@ char	*get_next_line(int fd)
 	if (fd == -1 || !BUFFER_SIZE || read(fd, 0, 0) < 0)
 		return (0);
 	buffer = reader(buffer, fd);
+	if (!buffer)
+		return (0);
 	line = ft_cl(buffer);
 	buffer = ft_nl(buffer);
-	return (buffer);
+	return (line);
 }
 
 int	main(void)

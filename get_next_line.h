@@ -40,6 +40,6 @@ char	*ft_cl(char *str);
 
 char	*ft_nl(char *str);
 
-void	ft_calloc(int n, int s);
+void	*ft_calloc(int n, int s);
 
 #endif
