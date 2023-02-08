@@ -6,7 +6,7 @@
 /*   By: romaurel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:24:18 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/06 15:05:37 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/08 20:07:17 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,16 @@ char	*get_next_line(int fd);
 
 char	*reader(char *buffer, int fd);
 
-int		strlenn(char *s, int option);
+int		ft_strlen(char *s);
 
-int		ft_strchr(char *s, char n);
+char	*ft_strchr(char *s, char c);
 
 char	*ft_strjoin(char *s1, char *s2);
+
+char	*ft_cl(char *str);
+
+char	*ft_nl(char *str);
+
+void	ft_calloc(int n, int s);
 
 #endif
