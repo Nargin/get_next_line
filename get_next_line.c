@@ -143,10 +143,10 @@ char	*get_next_line(int fd)
 	buffer = ft_nl(buffer);
 	return (line);
 }
-
+/*
 int	main(void)
 {
 	int fd = open("text.txt", O_RDONLY);
 
 	return (0);
-}
+}*/
