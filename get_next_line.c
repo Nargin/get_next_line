@@ -114,14 +114,16 @@ void	 *ft_calloc(int n, int s)
 {
 	int	i;
 	void	*p;
+	char	*sdf;
 
 	if (!n || !s)
 		return (ft_calloc(1, 1));
 	i = n * s;
 	p = malloc(n * s);
-	if (*p)
+	sdf = (char *) p;
+	if (sdf)
 		while (i--)
-			*p++ = 0;
+			*sdf++ = 0;
 	return (p);
 }
 
