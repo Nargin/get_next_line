@@ -50,20 +50,21 @@ char	*reader(char *buffer, int fd)
 	int		rfl;
 
 	if (!buffer)
-		ft_calloc(1, 1);
+		buffer = ft_calloc(1, 1);
+	str = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	rfl = 1;
 	while (rfl)
 	{
 		rfl = read(fd, str, BUFFER_SIZE);
+		if (rfl < 0)
+		{
+			free(str);
+			return (0);
+		}
+		str[rfl] = 0;
 		buffer = ft_strjoin(buffer, str);
-	}
-	if (!str)
-	{
 		free(str);
-		free(buffer);
 	}
-	else
-		free(str);
 	return (buffer);
 }
 
