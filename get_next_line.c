@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/08 23:20:29 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:17:21 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,19 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*nx;
 	int		i;
-	int		k;
 	int		len;
 
 	len = ft_strlen(s1) + ft_strlen(s2);
-	nx = ft_calloc(sizeof(char), len + 1);
+	nx = malloc(sizeof(char) * (len + 1));
 	if (!nx)
 		return (0);
+	i = 0;
 	len = 0;
-	i = len;
-	k = 0;
 	while (s1[i])
 		nx[len++] = s1[i++];
-	while (s2[k])
-		nx[len++] = s2[k++];
+	i = 0;
+	while (s2[i])
+		nx[len++] = s2[i++];
 	nx[len] = 0;
 	free(s1);
 	return (nx);
@@ -53,6 +52,8 @@ char	*reader(char *buffer, int fd)
 	if (!buffer)
 		buffer = ft_calloc(1, 1);
 	str = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	if (!str)
+		return (0);
 	rfl = 1;
 	while (rfl)
 	{
@@ -63,6 +64,7 @@ char	*reader(char *buffer, int fd)
 			return (0);
 		}
 		str[rfl] = 0;
+		printf("str : %s\n", str);
 		buffer = ft_strjoin(buffer, str);
 		free(str);
 	}
@@ -96,14 +98,11 @@ char	*ft_nl(char *str)
 	char	*nx;
 	int		i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (!str[i])
-	{
-		free(str);
-		return (0);
-	}
 	nx = ft_calloc(sizeof(char), ft_strlen(str) - i + 1);
 	if (!nx)
 		return (0);
