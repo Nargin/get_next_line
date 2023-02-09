@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/09 16:37:56 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:41:37 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,9 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (0);
 	line = ft_cl(buffer);
+	printf("%s\n", line);
 	if (!line)
-		return (0);	
+		return (0);
 	buffer = ft_nl(buffer);
 	return (line);
 }

@@ -1,5 +1,0 @@
-bonjour
-get
-next
-line
-fonctionne
