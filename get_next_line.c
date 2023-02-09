@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/09 00:17:21 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:37:56 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,14 @@ char	*reader(char *buffer, int fd)
 	rfl = 1;
 	while (rfl)
 	{
-		rfl = read(fd, str, BUFFER_SIZE);
-		if (rfl == -1)
+		rfl = read(fd, str, BUFFER_SIZE); 
+		if (str)
 		{
-			free(str);
-			return (0);
+			str[rfl] = 0;
+			buffer = ft_strjoin(buffer, str);
 		}
-		str[rfl] = 0;
-		printf("str : %s\n", str);
-		buffer = ft_strjoin(buffer, str);
-		free(str);
 	}
+	free(str);
 	return (buffer);
 }
 
@@ -87,7 +84,7 @@ char	*ft_cl(char *str)
 	i = -1;
 	while (str[++i] && str[i] != '\n')
 		nx[i] = str[i];
-	if (str[i] && str[i] == '\n')
+	if (!str[i] || str[i] == '\n')
 		nx[i++] = '\n';
 	nx[i] = 0;
 	return (nx);
@@ -97,6 +94,7 @@ char	*ft_nl(char *str)
 {
 	char	*nx;
 	int		i;
+	int		u;
 
 	if (!str)
 		return (0);
@@ -106,7 +104,10 @@ char	*ft_nl(char *str)
 	nx = ft_calloc(sizeof(char), ft_strlen(str) - i + 1);
 	if (!nx)
 		return (0);
-	nx = ft_strjoin(nx, str + i);
+	u = 0;
+	while (str[++i])
+		nx[u++] = str[i];
+	nx[u] = 0;
 	free(str);
 	return (nx);
 }
@@ -122,7 +123,7 @@ void	 *ft_calloc(int n, int s)
 	i = n * s;
 	p = malloc(n * s);
 	sdf = (char *) p;
-	if (sdf)
+	if (p)
 		while (i--)
 			*sdf++ = 0;
 	return (p);
@@ -135,11 +136,13 @@ char	*get_next_line(int fd)
 
 	if (fd == -1 || !BUFFER_SIZE || read(fd, 0, 0) < 0)
 		return (0);
-	buffer = reader(buffer, fd);
+	if (!buffer)
+		buffer = reader(buffer, fd);
 	if (!buffer)
 		return (0);
-	printf("test\n");
 	line = ft_cl(buffer);
+	if (!line)
+		return (0);	
 	buffer = ft_nl(buffer);
 	return (line);
 }
@@ -148,6 +151,10 @@ int	main(void)
 {
 	int fd = open("text.txt", O_RDONLY);
 
-	printf("%s\n", get_next_line(fd));
+	printf("0 : %s", get_next_line(fd));
+	printf("1 : %s", get_next_line(fd));
+	printf("2 : %s", get_next_line(fd));
+	printf("3 : %s", get_next_line(fd));
+	printf("4 : %s", get_next_line(fd));
 	return (0);
 }
