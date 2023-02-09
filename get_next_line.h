@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romaurel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:24:18 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/08 20:07:17 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/10 00:06:21 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ char	*ft_cl(char *str);
 
 char	*ft_nl(char *str);
 
-void	*ft_calloc(int n, int s);
+char	*ft_strndup(char *s, int start, int end);
 
 #endif
