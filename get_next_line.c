@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/10 00:11:43 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:09:17 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_strndup(char *s, int start, int end)
 	i = 0;
 	cp = (char *) malloc(((end - start) + 1) * sizeof(char));
 	if (!cp)
-		return(NULL);
+		return (NULL);
 	while (start < end)
 		cp[i++] = s[start++];
 	cp[i] = 0;
@@ -85,7 +85,7 @@ char	*reader(char *buffer, int fd)
 	rfl = 1;
 	while (rfl && !ft_strchr(str, '\n'))
 	{
-		rfl = read(fd, str, BUFFER_SIZE); 
+		rfl = read(fd, str, BUFFER_SIZE);
 		if (str)
 		{
 			str[rfl] = 0;
