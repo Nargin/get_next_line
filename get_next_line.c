@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/10 13:09:17 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:10:07 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ char	*reader(char *buffer, int fd)
 	while (rfl && !ft_strchr(str, '\n'))
 	{
 		rfl = read(fd, str, BUFFER_SIZE);
-		if (!str)
-		{
-			free(str);
-			return (0);
-		}
 		str[rfl] = 0;
 		buffer = ft_strjoin(buffer, str);
 	}
@@ -117,7 +112,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (fd == -1 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
 		return (0);
 	buffer = reader(buffer, fd);
 	if (!buffer)
@@ -129,14 +124,14 @@ char	*get_next_line(int fd)
 /*
 int	main(void)
 {
-	int fd = open("empty.txt", O_RDONLY);
+	int fd = open("text.txt", O_RDONLY);
 
 	// printf("0 : %s", get_next_line(fd));
 	// printf("1 : %s", get_next_line(fd));
 	// printf("2 : %s", get_next_line(fd));
 	// printf("3 : %s", get_next_line(fd));
 	// printf("4 : %s", get_next_line(fd));
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 10; i++)
 		printf("%s", get_next_line(fd));
 		// get_next_line(fd);
 	return (0);

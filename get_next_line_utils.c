@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:11:09 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/10 18:11:13 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:03:17 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, char c)
+int	ft_strchr(char *s, char c)
 {
 	int	i;
 
 	i = -1;
-	if (!c)
-		return (s + ft_strlen(s));
-	while (s[++i])
+	if (!s)
+		return (0);
+	while (s && s[++i])
 		if (s[i] == c)
-			return (s + i);
-	return (NULL);
+			return (1);
+	return (0);
 }
 
 char	*ft_strndup(char *s, int start, int end)

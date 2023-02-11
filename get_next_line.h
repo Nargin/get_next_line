@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:24:18 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/10 13:08:30 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:02:12 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*reader(char *buffer, int fd);
 
 int		ft_strlen(char *s);
 
-char	*ft_strchr(char *s, char c);
+int		ft_strchr(char *s, char c);
 
 char	*ft_strjoin(char *s1, char *s2);
 
