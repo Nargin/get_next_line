@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romaurel <romaurel@student.42perpigna      +#+  +:+       +#+        */
+/*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:11:09 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/11 15:03:17 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:27:41 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,19 @@ int	ft_strchr(char *s, char c)
 	return (0);
 }
 
-char	*ft_strndup(char *s, int start, int end)
+char	*ft_strndup(char *s, int len)
 {
 	int		i;
 	char	*cp;
 
-	i = 0;
-	cp = (char *) malloc(((end - start) + 1) * sizeof(char));
+	if (!s || !len)
+		return (NULL);
+	cp = (char *) malloc((len + 1) * sizeof(char));
 	if (!cp)
 		return (NULL);
-	while (start < end)
-		cp[i++] = s[start++];
+	i = -1;
+	while (++i < len)
+		cp[i] = s[i];
 	cp[i] = 0;
 	return (cp);
 }
