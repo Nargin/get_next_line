@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:43:44 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:51:01 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:32:11 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,26 @@ char	*ft_strjoin(char *s1, char *s2, int ilen)
 	return (nx);
 }
 
-// char	*reader(char *buffer, int fd)
-// {
-// 	char	str[BUFFER_SIZE + 1];
-// 	int		rfl;
+char	*reader(char *buffer, int fd)
+{
+	char	str[BUFFER_SIZE + 1];
+	int		rfl;
 
-// 	rfl = 1;
-// 	while (rfl > 0 && !ft_strchr(buffer, '\n'))
-// 	{
-// 		rfl = read(fd, str, BUFFER_SIZE);
-// 		str[rfl] = 0;
-// 		buffer = ft_strjoin(buffer, str, BUFFER_SIZE);
-// 	}
-// 	return (buffer);
-// }
+	rfl = 1;
+	while (rfl > 0 && !ft_strchr(buffer, '\n'))
+	{
+		rfl = read(fd, str, BUFFER_SIZE);
+		if (rfl == -1)
+		{
+			free(buffer);
+			buffer = NULL;
+			return (0);
+		}
+		str[rfl] = 0;
+		buffer = ft_strjoin(buffer, str, BUFFER_SIZE);
+	}
+	return (buffer);
+}
 
 char	*ft_cl(char **buffer)
 {
@@ -71,40 +77,13 @@ char	*ft_cl(char **buffer)
 	return (nx);
 }
 
-char	*soloq_lp_farmer(char **buffer, int rfl)
-{
-	char		*ec;
-	
-	ec = NULL;
-	if (rfl == -1)
-		ec = ft_strndup(*buffer, ft_strlen(*buffer));
-	if (*buffer)
-		free(*buffer);
-	*buffer = NULL;
-	return (ec);
-}
-
 char	*get_next_line(int fd)
 {
-	static char	*buffer = NULL;
-	char		str[BUFFER_SIZE + 1];
-	int			rfl;
+	static char	*buffer;
 
 	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
 		return (0);
-	if (ft_strchr(buffer, '\n'))
-		return (ft_cl(&buffer));
-	rfl = 1;
-	while (rfl > 0 && !ft_strchr(buffer, '\n'))
-	{
-		rfl = read(fd, str, BUFFER_SIZE);
-		if (rfl == -1)
-			return (soloq_lp_farmer(&buffer, rfl));
-		str[rfl] = 0;
-		buffer = ft_strjoin(buffer, str, BUFFER_SIZE);
-	}
-	if (!ft_strchr(buffer, '\n'))
-		return (soloq_lp_farmer(&buffer, rfl));
+	buffer = reader(buffer, fd);
 	return (ft_cl(&buffer));
 }
 
