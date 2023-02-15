@@ -71,17 +71,12 @@ char	*ft_cl(char **buffer)
 	return (nx);
 }
 
-char	*soloq_lp_farmer(char **buffer, int rfl)
+int	soloq_lp_farmer(char **buffer)
 {
-	char		*ec;
-	
-	ec = NULL;
-	if (rfl == -1)
-		ec = ft_strndup(*buffer, ft_strlen(*buffer));
 	if (*buffer)
 		free(*buffer);
 	*buffer = NULL;
-	return (ec);
+	return (0);
 }
 
 char	*get_next_line(int fd)
@@ -91,7 +86,7 @@ char	*get_next_line(int fd)
 	int			rfl;
 
 	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
-		return (0);
+		return (soloq_lp_farmer(&buffer));
 	if (ft_strchr(buffer, '\n'))
 		return (ft_cl(&buffer));
 	rfl = 1;
