@@ -6,7 +6,7 @@
 /*   By: romaurel <romaurel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 10:24:18 by romaurel          #+#    #+#             */
-/*   Updated: 2023/02/14 17:41:13 by romaurel         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:55:23 by romaurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ char	*ft_cl(char **buffer);
 
 char	*ft_strndup(char *s, int len);
 
-char	*soloq_lp_farmer(char **buffer, int rfl);
+char	*soloq_lp_farmer(char **buffer);
 
 #endif
